@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.input-field {
+    border: 2px solid #062275; /* Set the border color and width */
+    outline: none; /* Remove focus outline */
+}
+
+.input-field:focus {
+    /* Optional: Customize the focus style */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+input[type="range"]::-webkit-slider-thumb {
+    background-color: #062275;
+
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #3490dc 0%, #3490dc ${rangeValue}%, #ddd ${rangeValue}%, #ddd 100%);
+  }
