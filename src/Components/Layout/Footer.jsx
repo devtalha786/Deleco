@@ -25,7 +25,7 @@ export const Footer = () => {
   const data = [{ title: 'FAQ' }, { title: 'Contact us' }, { title: 'Customer Service' }];
   return (
     <div className="bg-black py-[40px]">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-[20px]">
         <div className="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-1 gap-2">
           <div className="flex flex-col gap-3">
             <img src="/assets/Logo (1).svg" width={141} height={37} alt="" />

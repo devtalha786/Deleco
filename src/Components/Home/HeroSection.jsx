@@ -3,7 +3,7 @@ import React from 'react';
 export const HeroSection = () => {
   return (
     <div className="pt-[30px]">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-[20px]">
         <div className="grid grid-cols-12 gap-2 items-center">
           <div className="md:col-span-6 col-span-12">
             <div className="">

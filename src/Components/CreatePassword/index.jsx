@@ -10,7 +10,7 @@ export const CreatePassword = () => {
   };
   return (
     <div className=" bg-white md:bg-[#009C76] min-h-[100vh] py-[40px]">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-[20px]">
         <div className="grid md:grid-cols-2 grid-cols-1 ">
           <div className="hidden md:block">
             <img src="/assets/Frame 1171274897.svg" className="max-w-full w-full h-auto" alt="" />

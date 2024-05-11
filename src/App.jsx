@@ -5,6 +5,8 @@ import { Header } from './Components/Layout/Header';
 import { SignIn } from './Components/SignIn';
 import { SignUp } from './Components/SIgnUp';
 import { CreatePassword } from './Components/CreatePassword';
+import { Restaurants } from './Components/Restaurants';
+import { Details } from './Components/Restaurants/Details';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/password" element={<CreatePassword />} />
+        <Route path="/restaurants" element={<Restaurants />} />
+        <Route path="/details" element={<Details />} />
         {/* <Route path="/citytocityride" element={<CityRide />} /> */}
       </Routes>
     </Router>

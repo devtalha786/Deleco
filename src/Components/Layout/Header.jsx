@@ -3,7 +3,7 @@ import React from 'react';
 export const Header = () => {
   return (
     <div className="py-4  ">
-      <div className="container mx-auto">
+      <div className="container mx-auto px-[20px]">
         <div className="flex justify-between items-center">
           <div className="logo">
             <img src="/assets/Logo (1).svg" width={141} height={37} alt="" />
