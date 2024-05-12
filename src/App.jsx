@@ -7,6 +7,7 @@ import { SignUp } from './Components/SIgnUp';
 import { CreatePassword } from './Components/CreatePassword';
 import { Restaurants } from './Components/Restaurants';
 import { Details } from './Components/Restaurants/Details';
+import { AllUser } from './Components/AllUsers/AllUser';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/password" element={<CreatePassword />} />
         <Route path="/restaurants" element={<Restaurants />} />
         <Route path="/details" element={<Details />} />
+        <Route path="/all-user" element={<AllUser />} />
         {/* <Route path="/citytocityride" element={<CityRide />} /> */}
       </Routes>
     </Router>

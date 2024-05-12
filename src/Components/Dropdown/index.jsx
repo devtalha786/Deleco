@@ -31,14 +31,16 @@ const Dropdown = ({ options, onSelect }) => {
         >
           <div className="py-1" role="none">
             {options.map((option) => (
-              <button
-                key={option}
-                className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                role="menuitem"
-                onClick={() => handleOptionClick(option)}
-              >
-                {option}
-              </button>
+              <a href={option.path}>
+                <button
+                  key={option}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  role="menuitem"
+                  onClick={() => handleOptionClick(option)}
+                >
+                  {option.name}
+                </button>
+              </a>
             ))}
           </div>
         </div>

@@ -8,7 +8,9 @@ export const Details = () => {
           <img src="/assets/Cover.svg" className="max-w-full w-full h-[300px] object-cover" alt="" />
           <div className="container mx-auto px-[20px]   ">
             <div className="flex justify-between absolute top-[30px] w-[92%]">
-              <img src="/assets/small btn (1).svg" width={34} height={34} alt="" />
+              <a href="/restaurants">
+                <img src="/assets/small btn (1).svg" width={34} height={34} alt="" />
+              </a>
               <img src="/assets/small btn (2).svg" width={34} height={34} alt="" />
             </div>
           </div>
