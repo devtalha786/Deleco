@@ -12,7 +12,9 @@ const DeleteRestaurant = ({ isOpen, onClose }) => {
 
           <h3 className="font-medium py-3">Are you sure you want to delete this?</h3>
           <div className="pt-4 flex gap-3">
-            <button className="px-3 py-2 rounded-[10px] border bg-transparent">Cancel</button>
+            <button className="px-3 py-2 rounded-[10px] border bg-transparent" onClick={onClose}>
+              Cancel
+            </button>
             <button className="px-3 py-2 rounded-[10px] border bg-[#009C76] text-white">Confirm</button>
           </div>
         </div>
