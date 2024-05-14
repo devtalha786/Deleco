@@ -1,0 +1,14 @@
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const AUTH_LOADER = "AUTH_LOADER";
+
+export const RESTAURANT_LOADER = "RESTAURANT_LOADER";
+export const ALL_RESTAURANT = "ALL_RESTAURANT";
+export const SINGLE_RESTAURANT = "SINGLE_RESTAURANT";
+
+
+// export const RESTAURANT_LOADER = "RESTAURANT_LOADER";
+
+
+
+

@@ -1,12 +1,16 @@
-import  { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { createRestaurant, getAllRestaurant } from '../../store/actions/restaurantAction';
-import { baseURL } from '../../config/axios';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { logout } from '../../store/actions/authAction';
+import { getAllRestaurant, updateRestaurant } from '../../store/actions/restaurantAction';
 
-const CreateRestaurant = ({ isOpen, onClose, setTitle, title, description, setDescription, images, setImages,setRestaurants }) => {
+const UpdateRestaurant = ({ isOpen, onClose, setRestaurants, selectedRestaurant}) => {
    const dispatch= useDispatch()
+   const navigate=useNavigate()
    const {user}=useSelector(state=>state.auth)
+   const [title,setTitle]=useState('')
+   const [description,setDescription]=useState('')
   const [city, setCity] = useState('');
   const [street, setStreet] = useState('');
   const [streetNumber, setStreetNumber] = useState('');
@@ -25,7 +29,7 @@ const CreateRestaurant = ({ isOpen, onClose, setTitle, title, description, setDe
     // You can handle the upload logic here
 
     
-    const newRestaurant = {
+    const payload = {
            name: title,
             description,
             type,
@@ -39,10 +43,16 @@ const CreateRestaurant = ({ isOpen, onClose, setTitle, title, description, setDe
             userName: user?.userName, // assuming this is a username logged from somewhere
           };
 
-          console.log('newRestaurant: ', newRestaurant);
-     dispatch(createRestaurant(newRestaurant,()=>{
+     dispatch(updateRestaurant(payload,selectedRestaurant?._id,()=>{
+      toast.success('restaurant updated successfully')
       dispatch(getAllRestaurant((data) => {
         setRestaurants(data)
+        onClose();
+  },()=>{
+    toast.error('token expirred.login again')
+    dispatch( logout())
+    navigate('/sign-in')
+
   }
 
 ));
@@ -54,6 +64,16 @@ const CreateRestaurant = ({ isOpen, onClose, setTitle, title, description, setDe
   
   };
 
+  useEffect(()=>{
+    setTitle(selectedRestaurant?.name)
+    setDescription(selectedRestaurant?.description)
+    setCity(selectedRestaurant?.address?.city)
+    setCountry(selectedRestaurant?.address?.country)
+    setStreet(selectedRestaurant?.address?.street)
+    setStreetNumber(selectedRestaurant?.address?.street_number)
+    setPostalCode(selectedRestaurant?.address?.postalCode)
+    setType(selectedRestaurant?.type)
+  },[selectedRestaurant])
   return (
     <div className={`${isOpen ? 'block' : 'hidden'} fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50`}>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md shadow-md h-[80vh] overflow-y-scroll">
@@ -61,7 +81,7 @@ const CreateRestaurant = ({ isOpen, onClose, setTitle, title, description, setDe
           X
         </button>
         <form onSubmit={handleSubmit} >
-          <h2 className="text-lg font-semibold mb-4">Create Restaurant</h2>
+          <h2 className="text-lg font-semibold mb-4">Update Restaurant</h2>
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2">Title</label>
             <input
@@ -187,7 +207,7 @@ const CreateRestaurant = ({ isOpen, onClose, setTitle, title, description, setDe
             ))}
           </div> */}
           <button type="submit" className="bg-[#009C76] text-white py-2 px-4 rounded-md hover:bg-blue-600 mt-4">
-            Create
+          Update
           </button>
         </form>
       </div>
@@ -195,4 +215,4 @@ const CreateRestaurant = ({ isOpen, onClose, setTitle, title, description, setDe
   );
 };
 
-export default CreateRestaurant;
+export default UpdateRestaurant;

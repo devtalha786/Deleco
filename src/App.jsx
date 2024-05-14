@@ -1,16 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home } from './Components/Home';
-import { Header } from './Components/Layout/Header';
-import { SignIn } from './Components/SignIn';
-import { SignUp } from './Components/SIgnUp';
+import { Provider } from 'react-redux';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { AllUser } from './Components/AllUsers/AllUser';
 import { CreatePassword } from './Components/CreatePassword';
+import { Home } from './Components/Home';
 import { Restaurants } from './Components/Restaurants';
 import { Details } from './Components/Restaurants/Details';
-import { AllUser } from './Components/AllUsers/AllUser';
+import { SignUp } from './Components/SIgnUp';
+import { SignIn } from './Components/SignIn';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+import store from "./store";
 
 function App() {
   return (
+    <Provider store={store}>
+                    <ToastContainer position='top-center' />
+
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -18,11 +25,13 @@ function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/password" element={<CreatePassword />} />
         <Route path="/restaurants" element={<Restaurants />} />
-        <Route path="/details" element={<Details />} />
+        <Route path="/details/:id" element={<Details />} />
         <Route path="/all-user" element={<AllUser />} />
         {/* <Route path="/citytocityride" element={<CityRide />} /> */}
       </Routes>
     </Router>
+    </Provider>
+
   );
 }
 

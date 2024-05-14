@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const DeleteRestaurant = ({ isOpen, onClose }) => {
+const DeleteRestaurant = ({ isOpen, onClose,onConfirm }) => {
   return (
     <div className={`${isOpen ? 'block' : 'hidden'} fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-50`}>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md shadow-md">
@@ -15,7 +15,7 @@ const DeleteRestaurant = ({ isOpen, onClose }) => {
             <button className="px-3 py-2 rounded-[10px] border bg-transparent" onClick={onClose}>
               Cancel
             </button>
-            <button className="px-3 py-2 rounded-[10px] border bg-[#009C76] text-white">Confirm</button>
+            <button className="px-3 py-2 rounded-[10px] border bg-[#009C76] text-white" onClick={onConfirm}>Confirm</button>
           </div>
         </div>
       </div>

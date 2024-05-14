@@ -1,6 +1,30 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/actions/authAction';
+import { useNavigate } from 'react-router-dom';
 
-const Dropdown = ({ options, onSelect }) => {
+const Dropdown = () => {
+  const {isAdmin,isRestaurantOwner}=useSelector(state=>state.auth)
+  
+  const options = isAdmin||isRestaurantOwner?[
+    {
+      name: 'Admin',
+      path: '#',
+    },
+    {
+      name: 'User',
+      path: '/all-user',
+    },
+    {
+      name: 'Logout',
+      path: '/',
+    },
+  ]:[{
+    name: 'Logout',
+    path: '/',
+  },];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
@@ -9,9 +33,13 @@ const Dropdown = ({ options, onSelect }) => {
   };
 
   const handleOptionClick = (option) => {
+    if(option.path=="/"){
+      dispatch(logout());
+    }
     setSelectedOption(option);
-    onSelect(option);
+    // onSelect(option);
     setIsOpen(false);
+    navigate(option.path)
   };
 
   return (
@@ -31,16 +59,14 @@ const Dropdown = ({ options, onSelect }) => {
         >
           <div className="py-1" role="none">
             {options.map((option) => (
-              <a href={option.path}>
                 <button
-                  key={option}
+                 key={option.path}
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                   role="menuitem"
                   onClick={() => handleOptionClick(option)}
                 >
                   {option.name}
                 </button>
-              </a>
             ))}
           </div>
         </div>

@@ -1,6 +1,17 @@
-import React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
+  const {uid}=useSelector(state=>state.auth)
+  const navigate=useNavigate()
+ const handleClick=()=>{
+   if(uid){
+    navigate('/restaurants')
+   }else{
+    navigate('/sign-in')
+
+   }
+ }
   return (
     <div className="py-4  ">
       <div className="container mx-auto px-[20px]">
@@ -12,11 +23,11 @@ export const Header = () => {
             <button className="rounded-[10px] py-[10px] px-[30px] bg-white text-[#009C76] font-semibold text-[16px]">
               Collaborate
             </button>
-            <a href="/sign-in">
-              <button className="rounded-[10px] py-[10px] px-[30px] bg-white text-[#009C76] font-semibold text-[16px]">
+            
+              <button onClick={handleClick} className="rounded-[10px] py-[10px] px-[30px] bg-white text-[#009C76] font-semibold text-[16px]">
                 Get Started
               </button>
-            </a>
+            
           </div>
         </div>
       </div>

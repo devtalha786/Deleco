@@ -1,6 +1,20 @@
-import React from 'react';
+import  { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const SignUp = () => {
+  const navigate = useNavigate();
+
+  const [name,setName]=useState('')
+  const [email,setEmail]=useState('')
+
+  const handleSignUp=(event)=>{
+
+
+    event.preventDefault()
+
+    localStorage.setItem('signupform', JSON.stringify({ name, email }))
+    navigate("/password")
+  }
   return (
     <div className=" bg-white md:bg-[#009C76] min-h-[100vh] py-[40px]">
       <div className="container mx-auto px-[20px]">
@@ -9,6 +23,7 @@ export const SignUp = () => {
             <img src="/assets/Frame 1171274897.svg" className="max-w-full w-full h-auto" alt="" />
           </div>
           <div className="rounded-[30px] w-full bg-white p-4" style={{ border: '1px solid #D6D6D680' }}>
+           <form onSubmit={handleSignUp}>
             <div className="max-w-full text-center md:max-w-[353px] mx-auto py-[30px]">
               <img src="/assets/Design 1.svg" height={100} width={100} className="mx-auto" alt="" />
               <h1 className="mt-[20px] font-extrabold text-[28px] text-black leading-[28px]">Tell us about yourself</h1>
@@ -23,7 +38,7 @@ export const SignUp = () => {
                     <label htmlFor="" className="text-[#8D8D8D] text-start text-[12px] font-bold m-0 leading-[16.71px]">
                       Name
                     </label>
-                    <input type="text" className="border-none outline-none bg-white w-full" name="" id="" />
+                    <input required type="text"  placeholder="John Doe" value={name} onChange={e=>setName(e.target.value)} className="border-none outline-none bg-white w-full" name="" id="" />
                   </div>
                 </div>
                 <div className="flex gap-2 px-2 py-2 mb-2 items-center rounded-[10px] bg-[#F7F7F7]">
@@ -33,7 +48,10 @@ export const SignUp = () => {
                       Email
                     </label>
                     <input
-                      type="text"
+                    required
+                      type="email"
+                      value={email}
+                      onChange={e=>setEmail(e.target.value)}
                       className="border-none outline-none bg-[#F7F7F7] w-full"
                       placeholder="testemail@email.com"
                       name=""
@@ -44,12 +62,13 @@ export const SignUp = () => {
               </div>
               <div>
                 <a href="/password">
-                  <button className="w-full rounded-[10px] py-4 font-semibold text-[20px] bg-[#009C76] text-white">
+                  <button type='submit' className="w-full rounded-[10px] py-4 font-semibold text-[20px] bg-[#009C76] text-white">
                     Continue
                   </button>
                 </a>
               </div>
             </div>
+            </form>
           </div>
         </div>
       </div>
